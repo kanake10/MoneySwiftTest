@@ -9,7 +9,6 @@ import javax.inject.Inject
 import androidx.compose.runtime.mutableStateOf
 import com.example.core.Resource
 import com.example.domain.usecases.ProductUseCase
-import com.example.moneyswifttest.viewmodels.SpaceNewsState
 import kotlinx.coroutines.flow.onEach
 
 @HiltViewModel
