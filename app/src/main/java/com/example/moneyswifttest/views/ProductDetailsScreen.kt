@@ -17,8 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -28,6 +26,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -47,7 +46,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.example.domain.models.ProductDomain
 import com.example.moneyswifttest.R
@@ -178,7 +176,7 @@ fun TotalAmountAndBuyButton(
                 },
                 text = {
                     Column {
-                        TextField(
+                        OutlinedTextField(
                             value = cardNumber,
                             onValueChange = { newValue ->
                                 cardNumber = newValue.take(16)
@@ -192,7 +190,7 @@ fun TotalAmountAndBuyButton(
                             label = { Text("Card Number") },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                         )
-                        TextField(
+                        OutlinedTextField(
                             value = mmYear.take(7),
                             onValueChange = { newValue ->
                                 val strippedValue = newValue.replace("\\D".toRegex(), "")
@@ -215,7 +213,7 @@ fun TotalAmountAndBuyButton(
                             label = { Text("MM/YY") },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                         )
-                        TextField(
+                        OutlinedTextField(
                             value = cvc,
                             onValueChange = { newValue ->
                                 cvc = newValue.take(3)
@@ -229,7 +227,7 @@ fun TotalAmountAndBuyButton(
                             label = { Text("CVC") },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                         )
-                        TextField(
+                        OutlinedTextField(
                             value = country,
                             onValueChange = { newValue ->
                                 country = newValue

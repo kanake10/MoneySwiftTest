@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -30,36 +31,56 @@ import com.example.moneyswifttest.viewmodels.ProductsViewModel
 @Composable
 fun ProductsScreen(
     navController: NavController,
-    viewModel: ProductsViewModel = hiltViewModel()
+    viewModel: ProductsViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.value
-    Box(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(state.products) { data ->
-                ProductsItem(
-                    data = data,
-                    onItemClick = {
-                        navController.navigate(Screen.ProductDetailScreen.route + "/${data.id}")
-                    }
-                )
-                Spacer(modifier = Modifier.height(8.dp))
+    Column(modifier = Modifier.fillMaxSize()) {
+        HomeTopBar(appName = "Money Swift Products")
+        Spacer(modifier = Modifier.height(8.dp))
+        Box(modifier = Modifier.weight(1f)) {
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                items(state.products) { data ->
+                    ProductsItem(
+                        data = data,
+                        onItemClick = {
+                            navController.navigate(Screen.ProductDetailScreen.route + "/${data.id}")
+                        }
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
             }
-        }
-        if(state.error.isNotBlank()) {
-            Text(
-                text = state.error,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .align(Alignment.Center)
-            )
-        }
-        if(state.isLoading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            if(state.error.isNotBlank()) {
+                Text(
+                    text = state.error,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                        .align(Alignment.Center)
+                )
+            }
+            if(state.isLoading) {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
         }
     }
 }
+
+@Composable
+private fun HomeTopBar(appName: String) {
+    Row(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+    ) {
+        Text(
+            text = appName,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(8.dp)
+        )
+    }
+}
+
 
 @Composable
 fun ProductsItem(data: ProductsDomain, onItemClick: (ProductsDomain) -> Unit) {
