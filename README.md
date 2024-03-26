@@ -62,4 +62,14 @@ Error on blank TextField | CVC Error | Card Number Error | Correct Details Examp
 --- | --- | --- | --- | ---
 <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/error_on-empty_field.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/cvc_error.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/card_number_error.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/correct_filled-details.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/payment_successful.jpeg" width="280"/>
 
+## Testing
+The screenshots below show test results for tests done on this repo
+
+#### Unit Tests
+<img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/products-usecase.png"/>
+<img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/product-usecase.png"/>
+<img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/product-dao.png"/>
+<img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/products-dao.png"/>
+
+
 
