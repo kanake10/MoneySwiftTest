@@ -47,4 +47,19 @@ On its launch MoneySwift will:
     * [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - An alternative syntax for writing Gradle build scripts using Koltin.
 * CI/CD
     * [GitHub Actions](https://github.com/features/actions)
- 
+
+ ## App Preview
+
+Let's take a look at our travel app:
+
+Splash | Products | Product Details |Payment Details
+--- | --- | --- |---
+<img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/splash.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/products.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/details_screen.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/payment_details.jpeg" width="280"/>
+
+Error Handling UI with Custom Error Displays :rocket::rocket:
+
+Error on blank TextField | CVC Error | Card Number Error | Correct Details Example | Payment Success
+--- | --- | --- | --- | ---
+<img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/error_on-empty_field.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/cvc_error.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/card_number_error.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/correct_filled-details.jpeg" width="280"/> | <img src="https://github.com/kanake10/MoneySwiftTest/blob/main/screenshots/payment_successful.jpeg" width="280"/>
+
+
