@@ -39,7 +39,7 @@ fun ProductsScreen(
 
     Column(modifier = Modifier.fillMaxSize()) {
         HomeTopBar(appName = "Money Swift Products", isDarkTheme = isDarkTheme)
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(4.dp))
         Box(modifier = Modifier.weight(1f)) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.products) { data ->
