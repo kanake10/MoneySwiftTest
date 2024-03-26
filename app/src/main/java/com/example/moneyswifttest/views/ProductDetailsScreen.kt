@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -61,6 +62,7 @@ fun ProductDetailScreen(
     }
 
     val state = viewModel.state.value
+    val isDarkTheme = isSystemInDarkTheme()
 
     Box(modifier = Modifier.fillMaxSize()) {
         state.productDetails?.let { details ->
@@ -83,12 +85,14 @@ fun ProductDetailScreen(
 
                         Details(
                             name = details.title,
-                            description = details.description
+                            description = details.description,
+                            isDarkTheme=isDarkTheme
                         )
                         Spacer(modifier = Modifier.height(50.dp))
                         TotalAmountAndBuyButton(
                             totalAmount = details.price.toString(),
-                            productDomain = details
+                            productDomain = details,
+                            isDarkTheme = isDarkTheme
                         )
                     }
                 }
@@ -98,7 +102,7 @@ fun ProductDetailScreen(
 }
 
 @Composable
-fun Details(name: String, description: String) {
+fun Details(name: String, description: String,isDarkTheme: Boolean) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -109,18 +113,20 @@ fun Details(name: String, description: String) {
             textAlign = TextAlign.Start,
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold,
-            maxLines = 5
+            maxLines = 5,
+            color = if (isDarkTheme) Color.White else Color.Black
         )
-        Text(text = name)
+        Text(text = name,color = if (isDarkTheme) Color.White else Color.Black)
         Divider(modifier = Modifier.padding(vertical = 8.dp))
         Text(
             text = "Description",
             textAlign = TextAlign.Start,
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold,
-            maxLines = 5
+            maxLines = 5,
+            color = if (isDarkTheme) Color.White else Color.Black
         )
-        Text(text = description, style = MaterialTheme.typography.bodyMedium)
+        Text(text = description, style = MaterialTheme.typography.bodyMedium,color = if (isDarkTheme) Color.White else Color.Black)
         Divider(modifier = Modifier.padding(vertical = 8.dp))
     }
 }
@@ -129,7 +135,8 @@ fun Details(name: String, description: String) {
 @Composable
 fun TotalAmountAndBuyButton(
     totalAmount: String,
-    productDomain: ProductDomain
+    productDomain: ProductDomain,
+    isDarkTheme: Boolean
 ) {
     var showDialog by remember { mutableStateOf(false) }
     var showSuccessDialog by remember { mutableStateOf(false) }
@@ -151,11 +158,13 @@ fun TotalAmountAndBuyButton(
         ) {
             Text(
                 text = "Total Amount",
-                modifier = Modifier.padding(start = 16.dp)
+                modifier = Modifier.padding(start = 16.dp),
+                color = if (isDarkTheme) Color.White else Color.Black
             )
             Text(
                 text = "$$totalAmount",
-                modifier = Modifier.padding(end = 16.dp)
+                modifier = Modifier.padding(end = 16.dp),
+                color = if (isDarkTheme) Color.White else Color.Black
             )
         }
         Spacer(modifier = Modifier.height(18.dp))

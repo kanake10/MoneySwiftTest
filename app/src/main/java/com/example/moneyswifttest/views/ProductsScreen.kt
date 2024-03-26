@@ -3,6 +3,7 @@ package com.example.moneyswifttest.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -34,8 +35,10 @@ fun ProductsScreen(
     viewModel: ProductsViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.value
+    val isDarkTheme = isSystemInDarkTheme()
+
     Column(modifier = Modifier.fillMaxSize()) {
-        HomeTopBar(appName = "Money Swift Products")
+        HomeTopBar(appName = "Money Swift Products", isDarkTheme = isDarkTheme)
         Spacer(modifier = Modifier.height(8.dp))
         Box(modifier = Modifier.weight(1f)) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
@@ -44,7 +47,8 @@ fun ProductsScreen(
                         data = data,
                         onItemClick = {
                             navController.navigate(Screen.ProductDetailScreen.route + "/${data.id}")
-                        }
+                        },
+                        isDarkTheme = isDarkTheme
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -67,7 +71,8 @@ fun ProductsScreen(
 }
 
 @Composable
-private fun HomeTopBar(appName: String) {
+private fun HomeTopBar(appName: String, isDarkTheme: Boolean) {
+    val textColor = if (isDarkTheme) Color.White else Color.Black
     Row(
         modifier = Modifier
             .padding(16.dp)
@@ -75,19 +80,19 @@ private fun HomeTopBar(appName: String) {
     ) {
         Text(
             text = appName,
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyLarge.copy(color = textColor),
             modifier = Modifier.padding(8.dp)
         )
     }
 }
 
-
 @Composable
-fun ProductsItem(data: ProductsDomain, onItemClick: (ProductsDomain) -> Unit) {
+fun ProductsItem(data: ProductsDomain, onItemClick: (ProductsDomain) -> Unit, isDarkTheme: Boolean) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onPrimary
+            containerColor = if (isDarkTheme) Color.Black else Color.White,
+            contentColor = if (isDarkTheme) Color.White else Color.Black
         ),
         shape = RoundedCornerShape(18.dp),
         elevation = CardDefaults.cardElevation(
@@ -111,13 +116,15 @@ fun ProductsItem(data: ProductsDomain, onItemClick: (ProductsDomain) -> Unit) {
                     .padding(vertical = 8.dp)
                     .padding(start = 6.dp)
             ) {
+                val textColor = if (isDarkTheme) Color.White else Color.Black
                 Text(
                     text = data.title,
                     textAlign = TextAlign.Start,
                     fontSize = 13.sp,
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.SemiBold,
-                    maxLines = 5
+                    maxLines = 5,
+                    color = textColor
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
@@ -125,12 +132,14 @@ fun ProductsItem(data: ProductsDomain, onItemClick: (ProductsDomain) -> Unit) {
                     fontSize = 12.sp,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Light,
+                    color = textColor
                 )
             }
         }
     }
 }
+
 
 
 
