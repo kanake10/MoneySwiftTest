@@ -50,7 +50,7 @@ On its launch MoneySwift will:
 
  ## App Preview
  
-Let's take a look at our travel app:
+Let's take a look at our MoneySwift app:
 
 Splash | Products | Product Details |Payment Details
 --- | --- | --- |---
