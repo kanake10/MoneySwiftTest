@@ -62,7 +62,6 @@ fun ProductDetailScreen(
     }
 
     val state = viewModel.state.value
-    val isDarkTheme = isSystemInDarkTheme()
 
     Box(modifier = Modifier.fillMaxSize()) {
         state.productDetails?.let { details ->
@@ -85,14 +84,12 @@ fun ProductDetailScreen(
 
                         Details(
                             name = details.title,
-                            description = details.description,
-                            isDarkTheme=isDarkTheme
+                            description = details.description
                         )
                         Spacer(modifier = Modifier.height(50.dp))
                         TotalAmountAndBuyButton(
                             totalAmount = details.price.toString(),
-                            productDomain = details,
-                            isDarkTheme = isDarkTheme
+                            productDomain = details
                         )
                     }
                 }
@@ -102,7 +99,7 @@ fun ProductDetailScreen(
 }
 
 @Composable
-fun Details(name: String, description: String,isDarkTheme: Boolean) {
+fun Details(name: String, description: String) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -114,9 +111,8 @@ fun Details(name: String, description: String,isDarkTheme: Boolean) {
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold,
             maxLines = 5,
-            color = if (isDarkTheme) Color.White else Color.Black
         )
-        Text(text = name,color = if (isDarkTheme) Color.White else Color.Black)
+        Text(text = name)
         Divider(modifier = Modifier.padding(vertical = 8.dp))
         Text(
             text = "Description",
@@ -124,9 +120,8 @@ fun Details(name: String, description: String,isDarkTheme: Boolean) {
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold,
             maxLines = 5,
-            color = if (isDarkTheme) Color.White else Color.Black
         )
-        Text(text = description, style = MaterialTheme.typography.bodyMedium,color = if (isDarkTheme) Color.White else Color.Black)
+        Text(text = description, style = MaterialTheme.typography.bodyMedium,)
         Divider(modifier = Modifier.padding(vertical = 8.dp))
     }
 }
@@ -135,8 +130,7 @@ fun Details(name: String, description: String,isDarkTheme: Boolean) {
 @Composable
 fun TotalAmountAndBuyButton(
     totalAmount: String,
-    productDomain: ProductDomain,
-    isDarkTheme: Boolean
+    productDomain: ProductDomain
 ) {
     var showDialog by remember { mutableStateOf(false) }
     var showSuccessDialog by remember { mutableStateOf(false) }
@@ -159,12 +153,10 @@ fun TotalAmountAndBuyButton(
             Text(
                 text = "Total Amount",
                 modifier = Modifier.padding(start = 16.dp),
-                color = if (isDarkTheme) Color.White else Color.Black
             )
             Text(
                 text = "$$totalAmount",
                 modifier = Modifier.padding(end = 16.dp),
-                color = if (isDarkTheme) Color.White else Color.Black
             )
         }
         Spacer(modifier = Modifier.height(18.dp))
